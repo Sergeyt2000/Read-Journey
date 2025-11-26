@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, register } from "./operations";
+import { login, register, logout, refreshUser } from "./operations";
 
 const slice = createSlice({
   name: "auth",
@@ -12,6 +12,7 @@ const slice = createSlice({
     error: null,
     isLoggedIn: false,
     isRefreshing: false,
+    isLoading: false,
   },
   reducers: {
     // Define your reducers here
@@ -23,27 +24,41 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload.response.data;
+        state.error = action.payload;
       })
       .addCase(login.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload.response.data;
-      });
+        state.error = action.payload;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user.name = null;
+        state.user.email = null;
+        state.token = null;
+        state.isLoggedIn = false;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        // state.user.name = action.payload.name;
+        // state.user.email = action.payload.email;
+        state.isLoggedIn = true;
+      })
   },
 });
 export default slice.reducer;

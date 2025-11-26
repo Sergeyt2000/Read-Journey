@@ -1,0 +1,8 @@
+.container {
+  padding: 40px 40px 28px 40px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  width: 847px;
+  background-color: #1f1f1f;
+}

@@ -23,7 +23,7 @@ export default function RegistrationForm() {
       >
         <Form className={css.form}>
           <Field name="name" type="text" placeholder="Username" />
-          <ErrorMessage name="username" component="div" className={css.error} />
+          <ErrorMessage name="name" component="div" className={css.error} />
           <Field name="email" type="email" placeholder="Email" />
           <ErrorMessage name="email" component="div" className={css.error} />
           <Field name="password" type="password" placeholder="Password" />

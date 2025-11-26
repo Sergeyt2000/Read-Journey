@@ -6,27 +6,23 @@ export const initialValues = {
   password: "",
 };
 
+const emailRegExp = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
 export const registerSchema = Yup.object().shape({
-  name: Yup.string()
-    // .max(16, "Name must be at most 16 characters")
-    .required("Name is required"),
+  name: Yup.string().required("Name is required"),
   email: Yup.string()
-    .email("Invalid email format")
-    // .max(128, "Email must be at most 128 characters")
-    .required("Email is required"),
+    .matches(emailRegExp, "Invalid email")
+    .required("Mail is required"),
   password: Yup.string()
-    .min(7, "Password must be at least 8 characters")
-    // .max(128, "Password must be at most 128 characters")
+    .min(7, "Password must be at least 7 characters")
     .required("Password is required"),
 });
 
 export const loginSchema = Yup.object().shape({
   email: Yup.string()
-    .email("Invalid email format")
-// .max(128, "Email must be at most 128 characters")
-    .required("Email is required"),
+    .matches(emailRegExp, "Invalid email")
+    .required("Mail is required"),
   password: Yup.string()
-    .min(7, "Password must be at least 8 characters")
-    // .max(128, "Password must be at most 128 characters")
+    .min(7, "Password must be at least 7 characters")
     .required("Password is required"),
 });

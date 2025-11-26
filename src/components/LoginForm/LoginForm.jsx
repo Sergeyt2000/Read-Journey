@@ -5,17 +5,23 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operations.js";
 import AuthHead from "../AuthHead/AuthHead.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
     const initialValues = {
       email: "",
       password: "",
     };
-    const handleSubmit = (values, { resetForm }) => {
-      console.log("Form data", values);
-      dispatch(login(values)).unwrap();
-      resetForm();
+  const handleSubmit = async (values, { resetForm }) => {
+      try {
+        await dispatch(login(values)).unwrap();
+        resetForm();
+        navigate("/recommended");        
+      } catch (error) {
+        console.log(error);        
+      }
     }
     return (
       <div className={css.login_form}>

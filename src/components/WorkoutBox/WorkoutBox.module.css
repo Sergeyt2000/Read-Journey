@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #262626;
+  border-radius: 12px;
+  width: 313px;
+}
+.title {
+  font-weight: 700;
+font-size: 20px;
+line-height: 100%;
+letter-spacing: -0.02em;
+}
+.choises {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+  margin-bottom: 26px;
+}
+.line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #f9f9f9;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  color: #1f1f1f;
+}
+.text {
+  width: 197px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+}
+.textspan {
+  color: #686868;
+}
