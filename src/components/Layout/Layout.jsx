@@ -4,7 +4,7 @@ import css from "./Layout.module.css";
 
 export default function Layout() {
   return (
-    <div className="container">
+    <div className={css.container}>
       <Header />
       <main className={css.main}>
         <Outlet />
