@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import {
   selectBooks,
   selectAllBooksData,
+  selectBookFilter,
 } from "../../redux/books/selectors.js";
 import Book from "../Book/Book.jsx";
 import { setPage } from "../../redux/books/slice.js";
@@ -14,28 +15,33 @@ export default function RecommendedBooks() {
   const dispatch = useDispatch();
   const books = useSelector(selectBooks);
   const { page, totalPages } = useSelector(selectAllBooksData);
+  const { author, title } = useSelector(selectBookFilter);
   const isFirstPage = page <= 1;
   const isLastPage = page >= totalPages;
   const prevpage = () => {
-    dispatch(setPage((Math.max(1, page - 1))));
+    dispatch(setPage(Math.max(1, page - 1)));
   };
   const nextpage = () => {
-    dispatch(setPage((Math.min(totalPages, page + 1))));
+    dispatch(setPage(Math.min(totalPages, page + 1)));
   };
 
   useEffect(() => {
-    dispatch(fetchBooks({ page }));
-  }, [dispatch, page]);
+    dispatch(fetchBooks({ page, author, title }));
+  }, [dispatch, page, author, title]);
   return (
     <div className={css.container}>
       <div className={css.header}>
         <h2>Recommended</h2>
-        <div>
-          <button type="button" onClick={prevpage} disabled={isFirstPage}>
-            ←
+        <div className={css.arrowbtns}>
+          <button type="button" className={css.btn} onClick={prevpage} disabled={isFirstPage}>
+            <svg className={css.arrow} width="20" height="20">
+              <use href="/icons/sprite.svg#icon-prev"></use>
+            </svg>
           </button>
-          <button type="button" onClick={nextpage} disabled={isLastPage}>
-            →
+          <button type="button" className={css.btn} onClick={nextpage} disabled={isLastPage}>
+            <svg className={css.arrow} width="20" height="20">
+              <use href="/icons/sprite.svg#icon-next"></use>
+            </svg>
           </button>
         </div>
       </div>

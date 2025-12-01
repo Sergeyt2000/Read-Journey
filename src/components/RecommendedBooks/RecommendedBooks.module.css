@@ -11,9 +11,36 @@
   flex-wrap: wrap;
   gap: 20px;
   margin-top: 20px;
-  justify-content: center;
+  justify-content: start;
 }
 .header {
   display: flex;
   justify-content: space-between;
+}
+.arrow {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  stroke: #f9f9f9;
+}
+.btn {
+  background-color: transparent;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  text-align: center;
+}
+.arrowbtns {
+  display: flex;
+  gap: 8px;
+}
+.btn:disabled .arrow {
+  stroke: rgba(249, 249, 249, 0.2);
+}
+.btn:hover,
+.btn:focus {
+  border-color: rgba(249, 249, 249, 0.3);
 }

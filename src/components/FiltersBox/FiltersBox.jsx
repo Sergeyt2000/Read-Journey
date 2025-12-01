@@ -1,19 +1,31 @@
 import { useState } from "react";
 import css from "./FiltersBox.module.css";
+// import { useSelector } from "react-redux";
+// import { selectBookFilter } from "../../redux/books/selectors.js";
+import { setAuthorFilter, setTitleFilter } from "../../redux/books/slice.js";
+import { useDispatch } from "react-redux";
+import { setPage } from "../../redux/books/slice.js";
 
 export default function FiltersBox() {
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-
-  const applyFilters = () => {
-    // тут передаєте значення десь далі або виконуєте запит
-    console.log("Apply filters:", { title, author });
-  };
-
+  const [localTitle, setLocalTitle] = useState("");
+  const [localAuthor, setLocalAuthor] = useState("");
+  
   //   const clearFilters = () => {
   //     setTitle("");
   //     setAuthor("");
   //   };
+
+  const dispatch = useDispatch();
+
+  const handleApply = () => {
+    dispatch(setTitleFilter(localTitle));
+    dispatch(setAuthorFilter(localAuthor));
+    dispatch(setPage(1));
+  };
+
+  // const { title, author } = useSelector(selectBookFilter);
+  // console.log('title, author',title, author);
+  
 
   return (
     <div className={css.filtersBox}>
@@ -22,8 +34,8 @@ export default function FiltersBox() {
           {/* <label htmlFor="title">Book title</label> */}
           <input
             type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            // value={title}
+            onChange={(e) => setLocalTitle(e.target.value)}
             placeholder="Enter text"
             className={css.input}
           />
@@ -35,14 +47,16 @@ export default function FiltersBox() {
           {/* <label htmlFor="author">The author</label> */}
           <input
             type="text"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
+            // value={author}
+            onChange={(e) => setLocalAuthor(e.target.value)}
             placeholder="Enter text"
             className={css.input}
           />
           <span className={css.title}>The author:</span>
         </div>
-        <button className={css.btn} onClick={applyFilters}>To apply</button>
+        <button className={css.btn} onClick={handleApply} type="button">
+          To apply
+        </button>
         {/* <button onClick={clearFilters}>Clear</button> */}
       </form>
     </div>
