@@ -10,11 +10,13 @@ export default function Book({ book }) {
   
   return (
     <div className={css.book}>
-      <img
-        src={book?.imageUrl || "/icons/no-image-icon-23494.png"}
-        alt={`${book.title} cover`}
-        className={css.coverImage}
-      />
+      <button type="button" className={css.imageBtn}>
+        <img
+          src={book?.imageUrl || "/icons/no-image-icon-23494.png"}
+          alt={`${book.title} cover`}
+          className={css.coverImage}
+        />
+      </button>
       <div className={book.recommend ? css.recommendedBook : css.ownBook}>
         <div className={book.recommend && css.textBox}>
           <h3 className={css.title}>{book.title}</h3>

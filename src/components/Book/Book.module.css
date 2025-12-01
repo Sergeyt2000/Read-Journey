@@ -6,7 +6,9 @@
   width: 100%;
   height: 208px;
   border-radius: 8px;
-  margin-bottom: 8px;
+  cursor: pointer;
+  object-fit: cover;
+  object-position: center;
 }
 .title {
   width: 100%;
@@ -52,4 +54,18 @@
 .textBox {
   width: 89px;
   overflow: hidden;
+}
+.imageBtn {
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+}
+.imageBtn:hover,
+.imageBtn:focus {
+  outline: none;
+}
+
+.recommendedBook,
+.ownBook {
+  margin-top: 8px;
 }

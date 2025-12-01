@@ -1,21 +1,39 @@
-.library {    
-    padding: 40px;
-    width: 847px;
-    height: 651px;
-    border-radius: 30px;
-    background-color: #1f1f1f;
+.library {
+  padding: 40px;
+  width: 847px;
+  height: 651px;
+  border-radius: 30px;
+  background-color: #1f1f1f;
+  position: relative;
 }
-/* .logo {
-    fill: rgb(127, 231, 231);
-    stroke: rgb(233, 159, 69);
-} */
 .bookList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 .libraryHeader {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.emptyState {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 274px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #f9f9f9;
+}
+.spantext {
+  color: #686868;
 }

@@ -31,7 +31,10 @@
   width: 40px;
   height: 40px;
   padding: 0;
-  text-align: center;
+  /* text-align: center; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .arrowbtns {
   display: flex;

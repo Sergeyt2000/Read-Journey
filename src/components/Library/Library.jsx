@@ -15,13 +15,13 @@ export default function Library() {
 
   return (
     <div className={css.library}>
-          <div className={css.libraryHeader}>
-          <h2>My library</h2>
-          <select>
-            <option value="all">All</option>
-            <option value="reading">Reading</option>
-            <option value="completed">Completed</option>
-          </select>
+      <div className={css.libraryHeader}>
+        <h2>My library</h2>
+        <select>
+          <option value="all">All</option>
+          <option value="reading">Reading</option>
+          <option value="completed">Completed</option>
+        </select>
       </div>
 
       <ul className={css.bookList}>
@@ -34,15 +34,15 @@ export default function Library() {
         ) : (
           <div className={css.emptyState}>
             <img
-              width="70"
-              height="70"
+              width="130"
+              height="130"
               src="/icons/bookDefault.png"
               alt="No books"
             />
-            {/* <span className={css.booksLogo}>Книга</span> */}
             <p className={css.text}>
-              To start training, add some of your books or from the recommended
-              ones.
+              To start training, add{" "}
+              <span className={css.spantext}>some of your books</span> or from
+              the recommended ones.
             </p>
           </div>
         )}
