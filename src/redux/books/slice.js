@@ -9,6 +9,7 @@ const slice = createSlice({
       results: [],
       totalPages: 0,
     },
+    newBooks: [],
     filter: {
       author: "",
       title: "",
@@ -44,7 +45,15 @@ const slice = createSlice({
       .addCase("books/fetchBooks/rejected", (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-      });
+      })
+      .addCase("books/fetchOwnBooks/fulfilled", (state, action) => {
+        state.newBooks = action.payload;
+      })
+      .addCase("books/delOwnBook", (state, action) => {
+        const bookId = action.payload;
+        state.newBooks = state.newBooks.filter((book) => book.id !== bookId);
+       }
+      );
   },
 });
 

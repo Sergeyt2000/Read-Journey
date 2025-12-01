@@ -29,8 +29,9 @@ export default function FiltersBox() {
 
   return (
     <div className={css.filtersBox}>
+      <p className={css.filterstitle}>Filters:</p>
       <form className={css.form}>
-        <div className={css.filter}>
+        <div className={`${css.filter} ${css.leftPadding1}`}>
           {/* <label htmlFor="title">Book title</label> */}
           <input
             type="text"
@@ -43,7 +44,7 @@ export default function FiltersBox() {
             Book title:
           </span>
         </div>
-        <div className={css.filter}>
+        <div className={`${css.filter} ${css.leftPadding2}`}>
           {/* <label htmlFor="author">The author</label> */}
           <input
             type="text"

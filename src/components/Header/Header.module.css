@@ -10,6 +10,7 @@
   line-height: 112%;
   letter-spacing: -0.02em;
   color: #f9f9f9;
+  margin-bottom: 16px;
 }
 .navBar {
   display: flex;

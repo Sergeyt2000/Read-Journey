@@ -14,6 +14,7 @@ import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { refreshUser } from "../../redux/auth/operations.js";
+import LibraryPage from "../../pages/LibraryPage/LibraryPage.jsx";
 // import NotFound from './pages/NotFound/NotFound.jsx';
 
 function App() {
@@ -45,14 +46,14 @@ function App() {
               </PrivateRoute>
             }
           />
-          {/* <Route
+          <Route
             path="/library"
             element={
               <PrivateRoute>
                 <LibraryPage />
               </PrivateRoute>
             }
-          /> */}
+          />
           {/* <Route
             path="/reading"
             element={
