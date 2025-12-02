@@ -19,7 +19,7 @@ export default function Book({ book }) {
       <div className={css.book}>
         <button type="button" className={css.imageBtn} onClick={handleModal}>
           <img
-            src={book?.imageUrl || "/icons/no-image-icon-23494.png"}
+            src={book?.imageUrl || "/icons/no-image-icon.png"}
             alt={`${book.title} cover`}
             className={css.coverImage}
           />

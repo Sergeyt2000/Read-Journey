@@ -5,6 +5,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import LoginPage from "../../pages/LoginPage/LoginPage.jsx";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage.jsx";
+import ReadingPage from "../../pages/ReadingPage/ReadingPage.jsx"
 import RecommendedPage from "../../pages/RecommendedPage/RecommendedPage.jsx";
 import Layout from "../Layout/Layout.jsx";
 import RestricterRoute from "../RestricterRoute.jsx";
@@ -54,14 +55,14 @@ function App() {
               </PrivateRoute>
             }
           />
-          {/* <Route
+          <Route
             path="/reading"
             element={
               <PrivateRoute>
                 <ReadingPage />
               </PrivateRoute>
             }
-          /> */}
+          />
         </Route>
         <Route
           path="/register"

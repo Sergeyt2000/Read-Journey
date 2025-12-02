@@ -51,8 +51,3 @@ export default function Library() {
   );
 }
 
-{
-  /* <svg className={css.logo} width="42" height="17">
-        <use href="/icons/sprite.svg#icon-book"></use>
-      </svg> */
-}

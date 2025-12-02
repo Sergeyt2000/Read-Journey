@@ -28,7 +28,6 @@ export const addNewBook = createAsyncThunk(
         author,
         totalPages,
       });
-      console.log("new books response", response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -66,6 +65,18 @@ export const addBookFromRecommended = createAsyncThunk(
   async ({ id }, thunkAPI) => {
     try {
       const response = await axios.post(`/books/add/${id}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addReadBook = createAsyncThunk(
+  "books/addReadBook",
+  async ({ id }, thunkAPI) => {
+    try {
+      const response = await axios.get(`/books/${id}`);     
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

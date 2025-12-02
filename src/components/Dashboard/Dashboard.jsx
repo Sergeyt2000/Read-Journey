@@ -17,7 +17,7 @@ import QuoteBox from "../QuoteBox/QuoteBox";
 export const Dashboard = ({ children }) => {
   return (
     <div className={css.dashboard}>
-      <div className={css.contant}>
+      <div className={css.content}>
         {children}
       </div>
     </div>

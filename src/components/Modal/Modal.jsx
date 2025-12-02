@@ -1,10 +1,15 @@
 import css from "./Modal.module.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addBookFromRecommended } from "../../redux/books/operations.js";
+import { useNavigate } from "react-router-dom";
+import {
+  addBookFromRecommended,
+  addReadBook,
+} from "../../redux/books/operations.js";
 
 export default function Modal({ book, setShowModal }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleClose = () => {
     setShowModal(false);
   };
@@ -28,6 +33,11 @@ export default function Modal({ book, setShowModal }) {
   const handleAddFav = () => {
     dispatch(addBookFromRecommended({ id: book._id }));
   };
+  const handleStartReading = () => {
+    setShowModal(false);
+    dispatch(addReadBook({ id: book._id }));
+    navigate("/reading");
+  };
 
   return (
     <div className={css.overlay} onClick={handleOverlayClick}>
@@ -38,16 +48,29 @@ export default function Modal({ book, setShowModal }) {
           </svg>
         </button>
         <img
-          src={book?.imageUrl || "/icons/no-image-icon-23494.png"}
+          src={book?.imageUrl || "/icons/no-image-icon.png"}
           alt={`${book.title} cover`}
           className={css.coverImage}
         />
         <h3 className={css.title}>{book.title}</h3>
         <p className={css.author}>{book.author}</p>
         <p className={css.totalPages}>{book.totalPages} pages</p>
-        <button type="button" className={css.addBtn} onClick={handleAddFav}>
+        {/* <button type="button" className={css.addBtn} onClick={handleAddFav}>
           Add to library
-        </button>
+        </button> */}
+        {book.progress ? (
+          <button
+            type="button"
+            className={css.addBtn}
+            onClick={handleStartReading}
+          >
+            Start reading
+          </button>
+        ) : (
+          <button type="button" className={css.addBtn} onClick={handleAddFav}>
+            Add to library
+          </button>
+        )}
       </div>
     </div>
   );
