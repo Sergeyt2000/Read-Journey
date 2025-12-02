@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const slice = createSlice({
   name: "books",
@@ -30,7 +30,7 @@ const slice = createSlice({
     },
     setTitleFilter(state, action) {
       state.filter.title = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -49,13 +49,22 @@ const slice = createSlice({
       .addCase("books/fetchOwnBooks/fulfilled", (state, action) => {
         state.newBooks = action.payload;
       })
-      .addCase("books/delOwnBook", (state, action) => {
-        const bookId = action.payload;
-        state.newBooks = state.newBooks.filter((book) => book.id !== bookId);
-       }
-      );
+      .addCase("books/delOwnBook/pending", (state) => {
+        state.isLoading = true;
+      })
+      .addCase("books/delOwnBook/fulfilled", (state, action) => {
+        const deletedBookId = action.payload;
+        state.newBooks = state.newBooks.filter(
+          (book) => book._id !== deletedBookId
+        );
+        state.isLoading = false;
+      })
+      .addCase("books/addRecomBook/fulfilled", (state, action) => {
+        state.newBooks.push(action.payload);
+      });
   },
 });
 
 export default slice.reducer;
-export const { setPage, setPerPage, setAuthorFilter, setTitleFilter } = slice.actions;
+export const { setPage, setPerPage, setAuthorFilter, setTitleFilter } =
+  slice.actions;

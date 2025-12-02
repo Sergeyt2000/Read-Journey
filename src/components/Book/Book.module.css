@@ -42,7 +42,7 @@
   padding: 0;
 }
 .delIcon {
-  width: 14px;
+  width: 28px;
   height: 14px;
   stroke: #E85050;
   fill: #1f1f1f;
@@ -52,7 +52,7 @@
   justify-content: space-between;
 }
 .textBox {
-  width: 89px;
+  max-width: 89px;
   overflow: hidden;
 }
 .imageBtn {

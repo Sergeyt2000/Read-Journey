@@ -13,7 +13,6 @@ export const fetchBooks = createAsyncThunk(
           author: author.trim() || undefined,
         },
       });
-      console.log("fetchBooks response", response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -42,7 +41,6 @@ export const fetchOwnBooks = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/books/own");
-      console.log("OwnBooks response", response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -52,16 +50,25 @@ export const fetchOwnBooks = createAsyncThunk(
 
 export const delOwnBook = createAsyncThunk(
   "books/delOwnBook",
+  async (bookId, thunkAPI) => {
+    try {
+      await axios.delete(`/books/remove/${bookId}`);
+      return bookId;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
+    }
+  }
+);
+export const addBookFromRecommended = createAsyncThunk(
+  "books/addRecomBook",
   async ({ id }, thunkAPI) => {
     try {
-      console.log("id", id);
-      
-      const response = await axios.delete(`/books/remove/${id}`);
+      const response = await axios.post(`/books/add/${id}`);
       return response.data;
     } catch (error) {
-      console.error("Помилка видалення:", error.response?.data);
-      const errorMessage = error.response?.data?.message || error.message;
-      return thunkAPI.rejectWithValue(errorMessage);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
