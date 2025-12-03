@@ -11,10 +11,18 @@
   gap: 14px;
 }
 .logInBtns {
-  margin-top: 146px;
+  margin-top: 126px;
   display: flex;
   align-items: center;
   gap: 20px;
+}
+.error {
+  padding-left: 14px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 117%;
+  letter-spacing: -0.02em;
+  color: #e90516;
 }
 
 /*   */
@@ -31,22 +39,21 @@
 .input {
   box-sizing: border-box;
   width: 100%;
-  padding: 16px 18px 16px 53px; /* місце під лейбл */
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 18px 16px 53px;
+  background-color: #262626;
+  border: none;
   border-radius: 12px;
   color: white;
   font-size: 16px;
   outline: none;
-  transition: all 0.2s;
+  /* transition: all 0.2s; */
 }
-.leftPadding{
-    padding-left: 86px;
+.leftPadding {
+  padding-left: 86px;
 }
 
 .input:focus {
-  border-color: #30b94d;
-  box-shadow: 0 0 0 2px rgba(48, 185, 77, 0.2);
+  border: 1px solid rgba(249, 249, 249, 0.1);
 }
 
 .labelText {
@@ -83,5 +90,5 @@
 .eyeIco {
   width: 20px;
   height: 20px;
-  stroke: #F9F9F9;
+  stroke: #f9f9f9;
 }

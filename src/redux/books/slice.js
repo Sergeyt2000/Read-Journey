@@ -66,7 +66,13 @@ const slice = createSlice({
       .addCase("books/addRecomBook/fulfilled", (state, action) => {
         state.newBooks.push(action.payload);
       })
-      .addCase("books/addReadBook/fulfilled", (state, action) => {      
+      .addCase("books/addReadBook/fulfilled", (state, action) => {
+        state.readBook = action.payload;
+      })
+      .addCase("books/startReading/fulfilled", (state, action) => {
+        state.readBook = action.payload;
+      })
+      .addCase("books/stopReading/fulfilled", (state, action) => {
         state.readBook = action.payload;
       });
   },

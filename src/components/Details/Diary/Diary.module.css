@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.diary {
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #262626;
+  border-radius: 12px;
+  height: 373px;
+  overflow: hidden;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  /* width: 273px; */
+
+  box-sizing: border-box;
+}
+.btn {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+.btn:focus {
+  outline: none;  
+}
+.icon {
+  stroke: #F9F9F9;
+}
+.iconBtns {
+  display: flex;
+  gap: 8px;
+}

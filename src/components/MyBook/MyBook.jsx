@@ -4,7 +4,11 @@ import { selectReadBook } from "../../redux/books//selectors.js";
 
 export default function MyBook() {
   const book = useSelector(selectReadBook);
+  const readingStatus = book?.progress?.at(-1)?.status;
+  const isReadingActive =
+    readingStatus !== "inactive" && book?.progress && book.progress.length > 0;
 
+  
   return (
     <div className={css.container}>
       <h2 className={css.title}>My reading</h2>
@@ -22,7 +26,11 @@ export default function MyBook() {
         </div>
         <button type="button" className={css.addBtn}>
           <svg className={css.logo} width="50" height="50">
-            <use href="/icons/sprite.svg#icon-stop-record"></use>
+            {isReadingActive ? (
+              <use href="/icons/sprite.svg#icon-stop-record"></use>
+            ) : (
+              <use href="/icons/sprite.svg#icon-start-record"></use>
+            )}
           </svg>
         </button>
       </div>

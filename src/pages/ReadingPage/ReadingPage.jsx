@@ -1,23 +1,29 @@
-import css from "./ReadingPage.module.css"
+import css from "./ReadingPage.module.css";
 import { Dashboard } from "../../components/Dashboard/Dashboard.jsx";
 import AddReading from "../../components/AddReading/AddReading";
-import Progress from "../../components/Progress/Progress"
-import MyBook from "../../components/MyBook/MyBook"
+import StopReading from "../../components/StopReading/StopReading.jsx";
+import Progress from "../../components/Progress/Progress";
+import MyBook from "../../components/MyBook/MyBook";
+import Details from "../../components/Details/Details.jsx" 
+import { useSelector } from "react-redux";
+import { selectReadBook } from "../../redux/books/selectors.js";
 
 export default function ReadingPage() {
-    return (
-      <div className={css.container}>
-        <Dashboard>
-          <AddReading />
-          <Progress />
-        </Dashboard>
-        <MyBook />
-      </div>
-    );
- }
+  const book = useSelector(selectReadBook);
 
+  // if (!book) return;
+  const readingStatus = book?.progress?.at(-1)?.status;
+  const isReadingActive =
+    readingStatus !== "inactive" && book?.progress && book.progress.length > 0;
 
-//  const handelAddToRead = () => {
-//    dispatch(addReadBook({ id }));
-//    navigate("/reading");
-//  };
+  return (
+    <div className={css.container}>
+      <Dashboard>
+        {!isReadingActive ? <AddReading /> : <StopReading />}
+        {!isReadingActive ? <Progress /> : <Details />}
+        {/* <Progress /> */}
+      </Dashboard>
+      <MyBook />
+    </div>
+  );
+}
