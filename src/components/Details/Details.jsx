@@ -10,8 +10,8 @@ export default function Details() {
     
     return (
       <div className={css.container}>
-        <Diary progress={book.progress} totalPages={book.totalPages} />
-        {/* <Statistics /> */}
+        {/* <Diary progress={book.progress} totalPages={book.totalPages} /> */}
+        <Statistics progress={book.progress} totalPages={book.totalPages} />
       </div>
     );
 }

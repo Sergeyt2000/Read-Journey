@@ -1,0 +1,68 @@
+/* .CircularProgressbar {
+    width: 100%;
+    vertical-align: middle;
+} */
+
+.text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  color: #686868;
+}
+
+.progressWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  background-color: #262626;
+  padding: 20px 62px;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.circularProgress {
+  /* filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3)); */
+}
+
+.percentText {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  fill: #f9f9f9;
+  dominant-baseline: middle; /* вертикальне вирівнювання */
+}
+
+.bottomInfo {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: start;
+  gap: 15px;
+}
+
+.pagesInfo {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 117%;
+  letter-spacing: -0.02em;
+  color: #686868;
+}
+
+.box {
+  border-radius: 4px;
+  background-color: rgb(48, 185, 77);
+  width: 14px;
+  height: 14px;
+}
+.percent {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+}
+
+
+
