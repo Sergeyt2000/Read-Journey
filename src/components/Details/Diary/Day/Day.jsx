@@ -29,7 +29,7 @@ export default function Day({ dayData, totalPages }) {
   }
 
   const progressDisplay = isActive
-    ? "in progress"
+    ? "reading"
     : totalPages > 0
     ? `${((pagesRead / totalPages) * 100).toFixed(1)}%`
     : "—";
@@ -38,16 +38,21 @@ export default function Day({ dayData, totalPages }) {
     ? "calculating..."
     : dayData.speed != null
     ? `${dayData.speed} pages per hour`
-    : "—";
+      : "—";
+  
+  const isToday = new Date(dayData.startReading || dayData.finishReading).toDateString() ===
+    new Date().toDateString();  
 
   return (
     <div className={css.container}>
-      {/* <div className={css.first}>
-      </div> */}
       <div className={css.second}>
         <div className={css.line}></div>
         <div className={css.datebox}>
-          <svg className={css.box} width="20" height="20">
+          <svg
+            className={`${css.box} ${isToday ? css.today : ""}`}
+            width="20"
+            height="20"
+          >
             <use href="/sprite.svg#block"></use>
           </svg>
           <p className={css.date}>{formattedDate}</p>

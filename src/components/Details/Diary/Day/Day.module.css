@@ -38,7 +38,7 @@
   padding: 0;
   margin-left: 8px;
   border: none;
-  transition: transform  250ms ease-in-out;
+  transition: transform 250ms ease-in-out;
 }
 .delBtn:focus {
   outline: none;
@@ -72,9 +72,12 @@
   margin-bottom: 30px;
 }
 .box {
-    /* position: absolute; */
-    fill: #f9f9f9;
-  stroke: #686868;
+  /* position: absolute; */
+  fill: #686868;
+  /* stroke: #686868; */
+}
+.today {
+  fill: #f9f9f9;
 }
 /* .first {
     position: relative;
@@ -90,6 +93,6 @@
   left: 10px;
 }
 .datebox {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }

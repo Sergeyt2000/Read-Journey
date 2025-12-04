@@ -10,20 +10,18 @@ export default function Statistics({ progress, totalPages }) {
   const offset = circumference - (percent / 100) * circumference;
   return (
     <div className={css.container}>
-      <h2>Statistics</h2>
       <p className={css.text}>
         Each page, each chapter is a new round of knowledge, a new step towards
         understanding. By rewriting statistics, we create our own reading
         history.
-      </p>
-      <div>        
+      </p>     
         <div className={css.progressWrapper}>
           {/* Круговий прогрес */}
           <svg
             className={css.circularProgress}
             viewBox="0 0 100 100"
-            width="120"
-            height="120"
+            width="168"
+            height="168"
           >
             {/* Фонова доріжка */}
             <circle
@@ -53,7 +51,7 @@ export default function Statistics({ progress, totalPages }) {
               x="50"
               y="50"
               textAnchor="middle"
-              dy="6"
+              dy="0"
               className={css.percentText}
             >
               {percent}%
@@ -68,10 +66,7 @@ export default function Statistics({ progress, totalPages }) {
               <p className={css.pagesInfo}>{pagesRead} pages read</p>
             </div>
           </div>
-        </div>        
-        {/* <p>{percent}%</p>
-        <p>{pagesRead} pages read</p> */}
-      </div>
+        </div>
     </div>
   );
 }

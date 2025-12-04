@@ -101,7 +101,7 @@ export const stopReading = createAsyncThunk(
   async ({ id, page }, thunkAPI) => {
     try {
       const response = await axios.post("/books/reading/finish", { id, page });
-      console.log("response.data", response.data); //
+      // console.log("response.data", response.data); 
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
