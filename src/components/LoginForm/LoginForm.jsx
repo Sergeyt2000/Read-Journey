@@ -7,10 +7,13 @@ import { login } from "../../redux/auth/operations.js";
 import AuthHead from "../AuthHead/AuthHead.jsx";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { selectIsLoading } from "../../redux/auth/selectors";
+import { useSelector } from "react-redux";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isLoading = useSelector(selectIsLoading);
   const [type, setType] = useState("password");
   const togglePassword = () => {
     setType(type === "password" ? "text" : "password");
@@ -82,8 +85,8 @@ export default function LoginForm() {
               className={css.error}
             /> */}
           <div className={css.logInBtns}>
-            <button type="submit" className={css.button}>
-              Log In
+            <button type="submit" className={css.button} disabled={isLoading}>
+              {isLoading ? "Logging in..." : "Log In"}
             </button>
             <Link to="/register" className={css.registerwrapp_link}>
               Don’t have an account?

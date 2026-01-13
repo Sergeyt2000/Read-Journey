@@ -108,3 +108,17 @@ export const stopReading = createAsyncThunk(
     }
   }
 );
+
+export const deleteProgress = createAsyncThunk(
+  "books/delProgress",
+  async ({ bookId, readingId }, thunkAPI) => {
+    try {
+      const response = await axios.delete(
+        `/books/reading?bookId=${bookId}&readingId=${readingId}`
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

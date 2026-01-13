@@ -15,7 +15,6 @@ const slice = createSlice({
     isLoading: false,
   },
   reducers: {
-    // Define your reducers here
   },
   extraReducers: (builder) => {
     builder
@@ -28,6 +27,7 @@ const slice = createSlice({
         state.user.email = action.payload.email;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isLoading = false;
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
@@ -42,6 +42,7 @@ const slice = createSlice({
         state.user.email = action.payload.email;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isLoading = false;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
@@ -53,12 +54,21 @@ const slice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        // state.user.name = action.payload.name;
-        // state.user.email = action.payload.email;
-        state.isLoggedIn = true;
+      .addCase(refreshUser.pending, (state) => {
+        state.isRefreshing = true;
       })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        // state.user = action.payload;
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(refreshUser.rejected, (state) => {
+        state.isRefreshing = false;
+        state.token = null;
+        state.isLoggedIn = false;
+      });
   },
 });
 export default slice.reducer;

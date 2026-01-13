@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import css from "./AddBook.module.css";
-import { addNewBook } from "../../redux/books/operations.js";
+import { addNewBook, fetchOwnBooks } from "../../redux/books/operations.js";
 import AddBookModal from "../AddBookModal/AddBookModal.jsx"
 
 export default function AddBook() {
@@ -12,15 +12,21 @@ export default function AddBook() {
     author: "",
     totalPages: "",
   });
-  const handleAdd = (e) => {
+  const handleAdd = async (e) => {
     e.preventDefault();
     const payload = {
       title: form.title,
       author: form.author,
       totalPages: Number(form.totalPages),
     };
-    dispatch(addNewBook(payload));
-    setShowModal(true);
+    try {
+      await dispatch(addNewBook(payload)).unwrap();
+      dispatch(fetchOwnBooks());
+      setForm({ title: "", author: "", totalPages: "" });
+      setShowModal(true);
+    } catch {
+      console.error("Failed to add book");
+    }
   };
   const handleChange = (e) => {
     const { name, value } = e.target;

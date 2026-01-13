@@ -3,7 +3,7 @@ import css from "./Logo.module.css";
 export default function Logo() {
   return (
     <div className={css.logo_container}>
-      <a href="/login" className={css.logoLink}>
+      <a href="/" className={css.logoLink}>
         <svg className={css.logo} width="42" height="17">
           <use href="/icons/sprite.svg#icon-logo"></use>
         </svg>

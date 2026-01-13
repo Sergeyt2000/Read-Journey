@@ -50,7 +50,7 @@ export default function Details() {
         </div>
       </div>
       {activeTab === "diary" && (
-        <Diary progress={book.progress} totalPages={book.totalPages} />
+        <Diary progress={book.progress} totalPages={book.totalPages} bookId={book._id} />
       )}
       {activeTab === "statistics" && (
         <Statistics progress={book.progress} totalPages={book.totalPages} />

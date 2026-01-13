@@ -21,7 +21,6 @@ const slice = createSlice({
   reducers: {
     setPage(state, action) {
       state.books.page = action.payload;
-      console.log(action.payload);
     },
     setPerPage(state, action) {
       state.books.perPage = action.payload;
@@ -49,6 +48,7 @@ const slice = createSlice({
       })
       .addCase("books/fetchOwnBooks/fulfilled", (state, action) => {
         state.newBooks = action.payload;
+        state.isLoading = false;
       })
       .addCase("books/delOwnBook/pending", (state) => {
         state.isLoading = true;
@@ -59,6 +59,9 @@ const slice = createSlice({
           (book) => book._id !== deletedBookId
         );
         state.isLoading = false;
+        if (state.readBook?._id === action.payload) {
+          state.readBook = {};
+        }
       })
       .addCase("books/addNewBooks/fulfilled", (state, action) => {
         state.newBooks.push(action.payload);
@@ -74,6 +77,10 @@ const slice = createSlice({
       })
       .addCase("books/stopReading/fulfilled", (state, action) => {
         state.readBook = action.payload;
+      })
+      .addCase("books/delProgress/fulfilled", (state, action) => {
+        const updatedBook = action.payload;
+        state.readBook = updatedBook;
       });
   },
 });

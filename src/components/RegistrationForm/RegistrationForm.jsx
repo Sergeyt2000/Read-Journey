@@ -1,22 +1,30 @@
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { initialValues, registerSchema } from "../formSchema";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { register } from "../../redux/auth/operations.js";
 import css from "./RegistrationForm.module.css";
 import AuthHead from "../AuthHead/AuthHead.jsx";
+import { selectIsLoading } from "../../redux/auth/selectors";
+import { useSelector } from "react-redux";
 
 export default function RegistrationForm() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
   const [type, setType] = useState("password");
   const togglePassword = () => {
     setType(type === "password" ? "text" : "password");
   };
-  const handleSubmit = (values, { resetForm }) => {
-    console.log("Form data", values);
-    dispatch(register(values)).unwrap();
-    resetForm();
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      await dispatch(register(values)).unwrap();
+      resetForm();
+      navigate("/recommended");
+    } catch (error) {
+      console.log("Registration failed:", error);
+    }
   };
   return (
     <div className={css.registration_form}>
@@ -73,7 +81,7 @@ export default function RegistrationForm() {
           </div>
 
           <div className={css.btnWrapper}>
-            <button type="submit" className={css.button}>
+            <button type="submit" className={css.button} disabled={isLoading}>
               Registration
             </button>
             <Link to="/login" className={css.registerwrapp_link}>

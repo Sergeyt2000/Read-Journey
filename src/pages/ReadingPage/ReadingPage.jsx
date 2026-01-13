@@ -15,13 +15,13 @@ export default function ReadingPage() {
   const readingStatus = book?.progress?.at(-1)?.status;
   const isReadingActive =
     readingStatus !== "inactive" && book?.progress && book.progress.length > 0;
+  const isInProgress = book?.progress?.length;
 
   return (
     <div className={css.container}>
       <Dashboard>
         {!isReadingActive ? <AddReading /> : <StopReading />}
-        {!isReadingActive ? <Progress /> : <Details />}
-        {/* <Progress /> */}
+        {isInProgress === 0 ? <Progress /> : <Details />}
       </Dashboard>
       <MyBook />
     </div>

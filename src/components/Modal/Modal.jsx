@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {
   addBookFromRecommended,
   addReadBook,
+  fetchOwnBooks,
 } from "../../redux/books/operations.js";
 
 export default function Modal({ book, setShowModal }) {
@@ -30,12 +31,14 @@ export default function Modal({ book, setShowModal }) {
     };
   }, [setShowModal]);
 
-  const handleAddFav = () => {
-    dispatch(addBookFromRecommended({ id: book._id }));
-  };
-  const handleStartReading = () => {
+  const handleAddFav = async () => {
+    await dispatch(addBookFromRecommended({ id: book._id })).unwrap();
+    dispatch(fetchOwnBooks());
     setShowModal(false);
-    dispatch(addReadBook({ id: book._id }));
+  };
+  const handleStartReading = async () => {
+    await dispatch(addReadBook({ id: book._id })).unwrap();
+    setShowModal(false);
     navigate("/reading");
   };
 

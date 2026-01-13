@@ -1,7 +1,12 @@
-// Day.jsx
+import { useDispatch } from "react-redux";
 import css from "./Day.module.css";
+import { deleteProgress } from "../../../../redux/books/operations.js"
 
-export default function Day({ dayData, totalPages }) {
+export default function Day({ dayData, totalPages, bookId }) {
+  const dispatch = useDispatch();
+  const handleDelete = () => {    
+    dispatch(deleteProgress({ bookId: bookId, readingId: dayData._id }));
+  };
   const formattedDate = new Date(dayData.startReading).toLocaleDateString(
     "uk-UA",
     {
@@ -38,10 +43,11 @@ export default function Day({ dayData, totalPages }) {
     ? "calculating..."
     : dayData.speed != null
     ? `${dayData.speed} pages per hour`
-      : "—";
-  
-  const isToday = new Date(dayData.startReading || dayData.finishReading).toDateString() ===
-    new Date().toDateString();  
+    : "—";
+
+  const isToday =
+    new Date(dayData.startReading || dayData.finishReading).toDateString() ===
+    new Date().toDateString();
 
   return (
     <div className={css.container}>
@@ -66,7 +72,7 @@ export default function Day({ dayData, totalPages }) {
           <svg className={css.diagram} width="59" height="25">
             <use href="/icons/sprite.svg#icon-line-diagram"></use>
           </svg>
-          <button type="button" className={css.delBtn}>
+          <button type="button" className={css.delBtn} onClick={handleDelete}>
             <svg className={css.trash} width="14" height="14">
               <use href="/icons/sprite.svg#icon-trash"></use>
             </svg>
